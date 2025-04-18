@@ -48,7 +48,8 @@ const useStyles = makeStyles({
     flexGrow: 1,
     display: "flex",
     flexDirection: "column",
-    ...shorthands.overflow("auto"),
+    overflowY: "auto",
+    overflowX: "hidden",
     marginTop: '5px',
   },
   footer: {
