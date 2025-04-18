@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { getSelectedText } from '../../utils/wordUtils';
+import { useOfficeContext } from '../../context/OfficeContext'; // Corrected import path
 
 // Create context
 const SelectionContext = createContext({
@@ -13,6 +14,7 @@ export const useSelection = () => useContext(SelectionContext);
 export const SelectionProvider = ({ children }) => {
   const [selectedText, setSelectedText] = useState('');
   const [isSelectionEmpty, setIsSelectionEmpty] = useState(true);
+  const { isOfficeReady } = useOfficeContext(); // Get the Office ready state
 
   const refreshSelection = async () => {
     try {
@@ -29,16 +31,21 @@ export const SelectionProvider = ({ children }) => {
     }
   };
 
-  // Initial load of selection
+  // Initial load of selection - only run when Office is ready
   useEffect(() => {
-    refreshSelection();
-  }, []);
+    if (isOfficeReady) {
+      console.log("SelectionContext: Office is ready, performing initial selection refresh.");
+      refreshSelection();
+    } else {
+      console.log("SelectionContext: Office not ready yet for initial selection refresh.");
+    }
+  }, [isOfficeReady]); // Depend on isOfficeReady
 
-  // Set up Office event listener for selection changes
+  // Set up Office event listener for selection changes - only run when Office is ready
   useEffect(() => {
-    // Only set up the event handler if Office is available
-    if (!window.Office || !window.Office.context || !window.Office.context.document) {
-      console.log("SelectionContext: Office context not available, skipping event handler setup");
+    // Only run setup if Office is ready
+    if (!isOfficeReady) {
+      console.log("SelectionContext: Office not ready, skipping event handler setup.");
       return;
     }
 
@@ -83,7 +90,7 @@ export const SelectionProvider = ({ children }) => {
         }
       }
     };
-  }, []);
+  }, [isOfficeReady]); // Depend on isOfficeReady
 
   const value = {
     selectedText,
