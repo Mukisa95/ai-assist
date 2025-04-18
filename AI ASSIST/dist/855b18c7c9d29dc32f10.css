@@ -1,0 +1,398 @@
+/* Compact styles for Word add-in */
+
+/* Basic reset and common styles */
+.compact-container {
+    font-family: 'Segoe UI', 'San Francisco', sans-serif;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #323130;
+    max-width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/* Make all buttons smaller */
+button {
+    padding: 3px 8px !important;
+    font-size: 12px !important;
+    min-height: 24px !important;
+    max-width: fit-content !important; /* Prevent buttons from being too wide */
+}
+
+/* Make all inputs smaller */
+input, 
+textarea, 
+.fui-Dropdown,
+.fui-Input,
+.fui-Textarea {
+    min-height: 24px !important;
+    font-size: 12px !important;
+    padding: 3px 6px !important;
+}
+
+/* Fix dropdown width issues */
+.fui-Dropdown {
+    max-width: 100% !important;
+    width: auto !important;
+    min-width: 0 !important;
+}
+
+.fui-Dropdown__button {
+    max-width: 100% !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+}
+
+/* Reduce text sizes */
+label, 
+p, 
+span, 
+.fui-Text,
+.fui-Label {
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+}
+
+/* Make switches smaller */
+.fui-Switch {
+    scale: 0.85;
+    transform-origin: left center;
+}
+
+/* Make checkboxes and radios smaller */
+.fui-Checkbox, 
+.fui-Radio {
+    transform: scale(0.85);
+    transform-origin: left center;
+}
+
+/* Reduce spacing in horizontal and vertical stacks */
+.fui-Stack {
+    gap: 5px !important;
+}
+
+/* Reduce padding in cards and panels */
+.fui-Card, 
+.fui-Panel {
+    padding: 5px !important;
+}
+
+/* Make headings smaller */
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+h1 { font-size: 16px !important; }
+h2 { font-size: 14px !important; }
+h3, h4, h5, h6 { font-size: 13px !important; }
+
+/* Reduce dialog padding */
+.fui-Dialog {
+    padding: 5px !important;
+}
+
+/* Reduce dropdown menu item sizes */
+.fui-Menu-item {
+    padding: 3px 6px !important;
+    font-size: 12px !important;
+    min-height: 24px !important;
+}
+
+/* Make tab smaller */
+.fui-Tab {
+    padding: 3px 6px !important;
+    font-size: 12px !important;
+    min-height: 24px !important;
+}
+
+/* Overall compact message bars */
+.fui-MessageBar {
+    padding: 4px 6px !important;
+    font-size: 11px !important;
+}
+
+/* Style for input areas */
+.ai-input-area {
+    margin-bottom: 6px;
+    width: 100%;
+}
+
+/* Prompt entry area */
+.prompt-container {
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.prompt-input {
+    width: 100%;
+    min-height: 24px; /* Start with a small height */
+    padding: 6px 8px;
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+    font-size: 12px;
+    line-height: 1.4;
+    resize: vertical;
+}
+
+.prompt-input:focus {
+    border-color: #0078d4;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.1);
+}
+
+/* Modern AI Response Boxes Styling */
+.ai-response-box {
+    position: relative;
+    background: linear-gradient(145deg, #ffffff, #f6f6fd);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 120, 212, 0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    padding: 8px 10px;
+    margin: 6px 0 8px;
+    transition: height 0.2s ease, box-shadow 0.2s ease;
+    min-height: 32px; /* Smaller minimum height */
+    max-height: 40vh; /* Maximum height before scrolling */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.ai-response-box:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, #0078d4, #2b88d8);
+    border-radius: 3px 0 0 3px;
+}
+
+.ai-response-box:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Style the text content area */
+.ai-response-text-content {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: 1.4;
+    font-size: 12px;
+    padding: 4px;
+    flex-grow: 1;
+    overflow-wrap: break-word;
+}
+
+.response-actions,
+.ai-response-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+/* Primary actions button */
+.ai-primary-button {
+    background-color: #0078d4;
+    color: #ffffff;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    min-height: 24px;
+}
+
+.ai-primary-button:hover {
+    background-color: #106ebe;
+}
+
+.ai-primary-button:disabled {
+    background-color: #c8c8c8;
+    cursor: not-allowed;
+}
+
+/* Secondary actions button */
+.ai-secondary-button {
+    background-color: transparent;
+    color: #0078d4;
+    border: 1px solid #0078d4;
+    padding: 3px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.2s;
+    min-height: 24px;
+}
+
+.ai-secondary-button:hover {
+    background-color: rgba(0, 120, 212, 0.1);
+}
+
+.ai-secondary-button:disabled {
+    color: #a19f9d;
+    border-color: #a19f9d;
+    cursor: not-allowed;
+}
+
+/* Loading indicator styles */
+.ai-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    color: #605e5c;
+}
+
+/* Error message styling */
+.ai-error {
+    color: #a4262c;
+    padding: 6px 8px;
+    margin-bottom: 6px;
+    background-color: rgba(164, 38, 44, 0.1);
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* Enhanced HelpMeWriteUI styling */
+.options-row {
+    background-color: #f9f9fc !important;
+    border-radius: 6px !important;
+    padding: 6px 8px !important;
+    border: 1px solid #e8e8f7 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+}
+
+/* Style radio button and checkbox labels */
+.fui-Radio > span:not(.fui-Radio__input), 
+.fui-Checkbox > span:not(.fui-Checkbox__input), 
+.fui-Switch > span:not(.fui-Switch__input) {
+    font-size: 11px !important;
+    letter-spacing: -0.05px !important;
+}
+
+/* Modern dropdown styling */
+.fui-Dropdown[data-appearance="outline"] {
+    border-radius: 4px !important;
+    border-color: #d1d1d1 !important;
+    background-color: #fcfcfc !important;
+    transition: all 0.2s ease !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+}
+
+.fui-Dropdown[data-appearance="outline"]:hover {
+    border-color: #b3b3b3 !important;
+    background-color: #ffffff !important;
+}
+
+/* Enhance radio group layout */
+.fui-RadioGroup[data-layout="horizontal"] {
+    flex-wrap: nowrap !important;
+    gap: 6px !important;
+    display: flex !important;
+    width: 100% !important;
+}
+
+/* Make compact radio group more compact */
+.compact-radio-group {
+    gap: 8px !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    justify-content: space-between !important;
+}
+
+/* Compact field styles */
+.field-group {
+    margin-bottom: 3px !important;
+}
+
+/* Enhanced radio button options */
+.radio-option {
+    padding: 3px 5px !important;
+    background-color: transparent !important;
+    border-radius: 4px !important;
+    border: 1px solid transparent !important;
+    transition: all 0.15s ease !important;
+    margin-right: 4px !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+    overflow: hidden !important;
+    flex: 1 !important;
+}
+
+.radio-option:hover {
+    background-color: rgba(0, 0, 0, 0.03) !important;
+}
+
+.radio-option[data-checked="true"] {
+    background-color: rgba(0, 120, 212, 0.05) !important;
+    border-color: rgba(0, 120, 212, 0.2) !important;
+}
+
+/* Action buttons spacing */
+.ai-response-actions button,
+.fui-Button {
+    margin-right: 3px !important;
+}
+
+.ai-response-actions button:last-child,
+.fui-Button:last-child {
+    margin-right: 0 !important;
+}
+
+/* Make textareas in components more compact */
+.expandingTextarea,
+.fui-Textarea {
+    min-height: 24px !important;
+    max-height: 200px !important;
+    transition: height 0.1s ease !important;
+}
+
+/* Make the response box headers more compact */
+.responseHeader,
+.ai-response-header {
+    margin-bottom: 5px !important;
+    padding-bottom: 3px !important;
+    font-size: 12px !important;
+    border-bottom: 1px solid rgba(0, 120, 212, 0.1) !important;
+}
+
+/* Ensure consistent styling for response box wrappers */
+.responseWrapper,
+.ai-response-wrapper {
+    width: 100% !important;
+    margin-bottom: 6px !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .compact-container {
+        padding: 6px;
+    }
+    
+    .prompt-input, 
+    .ai-response-box {
+        font-size: 12px;
+    }
+    
+    .ai-primary-button,
+    .ai-secondary-button {
+        padding: 3px 8px;
+    }
+} 
